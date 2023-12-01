@@ -43,7 +43,7 @@ const BorderWrapper = styled.div`
   flex-direction: column;
 
   height: 100%;
-  max-height: 270px;
+  max-height: 200px;
 
   width: 90%;
   max-width: 530px;
@@ -88,30 +88,6 @@ const FormWrapper = styled.form`
   max-height: 230px;
 
   gap: 22px;
-`;
-
-const ContentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%;
-
-  gap: 10px;
-`;
-
-const ContentInputBox = styled.div`
-  width: 100%;
-  height: 36px;
-  display: flex;
-  align-items: center;
-
-  border-radius: 6px;
-
-  background-color: #fbf5f2;
-  padding: 0 18px;
-
-  gap: 12px;
 `;
 
 const SubmitWrapper = styled.div`
