@@ -18,20 +18,20 @@ const Write = () => {
     content: "",
   });
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      alert("로그인 후 이용이 가능합니다.");
-      router.push("/login");
-    } else {
-      setIsAuthenticated(true);
-    }
-  }, []);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("accessToken");
+  //   if (!token) {
+  //     alert("로그인 후 이용이 가능합니다.");
+  //     router.push("/login");
+  //   } else {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
 
   const ToggleLike = async () => {
     const res = await axios.post("/likes");
@@ -63,7 +63,7 @@ const Write = () => {
 
     axios
       .post(
-        "http://localhost:3000/api/post",
+        "https://webp.haerin.app/api/post",
         {
           title: content?.title,
           content: content?.content,

@@ -13,7 +13,7 @@ interface Props {
 
 const List: NextPage<Props> = ({ createdAt }) => {
   const [info, setInfo] = useState<Information>({
-    title: "영차 ~",
+    title: "",
   });
 
   console.log(createdAt);
@@ -21,7 +21,7 @@ const List: NextPage<Props> = ({ createdAt }) => {
   return (
     <>
       <Container>
-        <ContentWrapper href="http://localhost:3000/post">
+        <ContentWrapper href="https://webp.haerin.app/board/:id">
           <Content>
             <ListTitle>제목 : {info?.title}</ListTitle>
             <Date>작성일: {createdAt.toISOString().split("T")[0]}</Date>
