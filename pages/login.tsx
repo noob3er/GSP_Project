@@ -14,7 +14,7 @@ const Login = () => {
             <SubmitWrapper>
               <GoogleLoginWrapper>
                 <GoogleLogo src="/assets/symbols/google.svg" />
-                <GOogleLogin href="localhost:3000/auth/google">
+                <GOogleLogin href="https://webp.haerin.app:3000/auth/google">
                   구글 로그인
                 </GOogleLogin>
               </GoogleLoginWrapper>
