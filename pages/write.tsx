@@ -19,7 +19,6 @@ const Write = () => {
   });
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (!token) {
@@ -28,14 +27,6 @@ const Write = () => {
     } else {
       setIsAuthenticated(true);
     }
-  }, []);
-
-  useEffect(() => {
-    const FetchData = async () => {
-      const res = await axios.get("/likes");
-      if (res.data.type === "liked") setLike(true);
-    };
-    FetchData();
   }, []);
 
   if (!isAuthenticated) {
