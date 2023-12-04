@@ -9,9 +9,10 @@ interface Information {
 
 interface Props {
   createdAt: Date;
+  id: string;
 }
 
-const List: NextPage<Props> = ({ createdAt }) => {
+const List: NextPage<Props> = ({ createdAt, id }) => {
   const [info, setInfo] = useState<Information>({
     title: "",
   });
@@ -21,7 +22,7 @@ const List: NextPage<Props> = ({ createdAt }) => {
   return (
     <>
       <Container>
-        <ContentWrapper href="https://webp.haerin.app/board/:id">
+        <ContentWrapper href={`https://webp.haerin.app/board/${id}`} passHref>
           <Content>
             <ListTitle>제목 : {info?.title}</ListTitle>
             <Date>작성일: {createdAt.toISOString().split("T")[0]}</Date>

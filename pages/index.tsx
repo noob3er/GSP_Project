@@ -4,6 +4,7 @@ import Pagination from "@/components/Pagination";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import getList from "@/api/getList";
 
 const Index = () => {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
