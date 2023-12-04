@@ -12,11 +12,15 @@ const Login = () => {
           </TopWrapper>
           <FormWrapper>
             <SubmitWrapper>
-              <GoogleLoginWrapper>
+              <GoogleLoginWrapper
+                href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
+              >
                 <GoogleLogo src="/assets/symbols/google.svg" />
-                <GOogleLogin href="https://api.haerin.app">
+                <GoogleLogin
+                  href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
+                >
                   구글 로그인
-                </GOogleLogin>
+                </GoogleLogin>
               </GoogleLoginWrapper>
             </SubmitWrapper>
           </FormWrapper>
@@ -77,7 +81,7 @@ const MainTitle = styled.h1`
   font-weight: 700;
 `;
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +107,7 @@ const SubmitWrapper = styled.div`
   gap: 8px;
 `;
 
-const SubmitLogin = styled.button`
+const SubmitLogin = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,4 +137,4 @@ const GoogleLogo = styled.img`
   width: 14px;
 `;
 
-const GOogleLogin = styled(Link)``;
+const GoogleLogin = styled(Link)``;

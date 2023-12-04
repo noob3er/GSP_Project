@@ -7,7 +7,8 @@ import styled from "styled-components";
 
 interface InterfaceType {
   title?: string;
-  content?: string;
+  description?: string;
+  likes?: number;
 }
 
 const Write = () => {
@@ -15,7 +16,8 @@ const Write = () => {
 
   const [content, setContent] = useState<InterfaceType>({
     title: "",
-    content: "",
+    description: "",
+    likes: 0,
   });
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,24 +51,25 @@ const Write = () => {
   };
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!content.title || !content.content)
+    if (!content.title || !content.description)
       return alert("제목과 내용을 입력해주세요.");
 
     if (content.title.length > 15) {
       alert("제목은 15자 이내로 작성해주세요.");
       return;
     }
-    if (content.content.length > 400) {
+    if (content.description.length > 400) {
       alert("내용은 400자 이내로 작성해주세요.");
       return;
     }
 
     axios
       .post(
-        "https://webp.haerin.app/api/post",
+        `${process.env.NEXT_PUBLIC_API_URL}/board/create`,
         {
           title: content?.title,
-          content: content?.content,
+          description: content?.description,
+          likes: 0,
         },
         {
           headers: {
@@ -92,7 +95,7 @@ const Write = () => {
               <MainTitle>제목: </MainTitle>
               <SubTitle
                 name="title"
-                value={content.title}
+                value={content?.title}
                 onChange={ChangeHandler}
               />
             </TitleWrapper>
@@ -100,8 +103,8 @@ const Write = () => {
           <HeaderBottom>
             <ContentWrapper>
               <Content
-                name="content"
-                value={content.content}
+                name="description"
+                value={content?.description}
                 onChange={ChangeHandler}
               />
             </ContentWrapper>
@@ -172,7 +175,7 @@ const MainTitle = styled.h1`
 `;
 const SubTitle = styled.input`
   padding: 0 8px;
-  width: 60%;
+  width: 90%;
   height: 100%;
   font-size: 22px;
   font-weight: 500;

@@ -22,7 +22,10 @@ const List: NextPage<Props> = ({ createdAt, id }) => {
   return (
     <>
       <Container>
-        <ContentWrapper href={`https://webp.haerin.app/board/${id}`} passHref>
+        <ContentWrapper
+          href={`${process.env.NEXT_PUBLIC_API_URL}/board/${id}`}
+          passHref
+        >
           <Content>
             <ListTitle>제목 : {info?.title}</ListTitle>
             <Date>작성일: {createdAt.toISOString().split("T")[0]}</Date>

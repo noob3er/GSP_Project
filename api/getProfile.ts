@@ -4,7 +4,7 @@ import Router from "next/router";
 
 const getProfile = async () => {
   try {
-    const { data } = await axios.get("/auth/google", {
+    const { data } = await axios.get("/auth/google/username", {
       headers: {
         Authorization: `Bearer ${getCookie("accessToken")}`,
       },

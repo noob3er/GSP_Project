@@ -1,12 +1,30 @@
 import Header from "@/components/Header";
 import List from "@/components/List";
 import Pagination from "@/components/Pagination";
-import router from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import getList from "@/api/getList";
+import router from "next/router";
 
 const Index = () => {
+  interface Post {
+    id: string;
+    createdAt: string;
+  }
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getList();
+        setPosts(data);
+      } catch (error) {
+        console.error("게시물을 불러오는 데 실패했습니다:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   // useEffect(() => {
   //   const token = localStorage.getItem("accessToken");
@@ -32,7 +50,13 @@ const Index = () => {
             <MainLogo src="/assets/Logo.svg" />
           </TitleWrapper>
           <ContentWrapper>
-            <List createdAt={new Date()} />
+            {posts.map((post) => (
+              <List
+                key={post.id}
+                createdAt={new Date(post.createdAt)}
+                id={post.id}
+              />
+            ))}
           </ContentWrapper>
           <PaginationWrapper>
             <Pagination />
