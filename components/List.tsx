@@ -21,7 +21,7 @@ const List: NextPage<Props> = ({ createdAt }) => {
   return (
     <>
       <Container>
-        <ContentWrapper href="/ListPage">
+        <ContentWrapper href="http://localhost:3000/post">
           <Content>
             <ListTitle>제목 : {info?.title}</ListTitle>
             <Date>작성일: {createdAt.toISOString().split("T")[0]}</Date>

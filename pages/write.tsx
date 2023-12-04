@@ -6,29 +6,46 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface InterfaceType {
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
 }
 
 const Write = () => {
+  const [like, setLike] = useState(false);
+
   const [content, setContent] = useState<InterfaceType>({
     title: "",
     content: "",
   });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      alert("로그인 후 이용이 가능합니다.");
-      router.push("/login");
-    } else {
-      setIsAuthenticated(true);
-    }
-  }, []);
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("accessToken");
+  //   if (!token) {
+  //     alert("로그인 후 이용이 가능합니다.");
+  //     router.push("/login");
+  //   } else {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const FetchData = async () => {
+  //     const res = await axios.get("/likes");
+  //     if (res.data.type === "liked") setLike(true);
+  //   };
+  //   FetchData();
+  // }, []);
+
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
+
+  const ToggleLike = async () => {
+    const res = await axios.post("/likes");
+    setLike(true);
+  };
 
   const ChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -57,8 +74,8 @@ const Write = () => {
       .post(
         "http://localhost:3000/api/post",
         {
-          title: content.title,
-          content: content.content,
+          title: content?.title,
+          content: content?.content,
         },
         {
           headers: {
@@ -227,4 +244,16 @@ const Submit = styled.button`
 const SubmitName = styled.h1`
   font-size: 18px;
   font-weight: 500;
+`;
+
+const LikesWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 1%;
+`;
+
+const LieksImg = styled.img`
+  width: 30px;
 `;
