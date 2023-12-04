@@ -6,20 +6,20 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Index = () => {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // useEffect(() => {
-  //   const token = localStorage.getItem("accessToken");
-  //   if (!token) {
-  //     alert("로그인 후 이용이 가능합니다.");
-  //     router.push("/login");
-  //   } else {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인 후 이용이 가능합니다.");
+      router.push("/login");
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
-  // if (!isAuthenticated) {
-  //   return null;
-  // }
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <>

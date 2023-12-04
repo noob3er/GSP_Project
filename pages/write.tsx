@@ -18,29 +18,29 @@ const Write = () => {
     content: "",
   });
 
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("accessToken");
-  //   if (!token) {
-  //     alert("로그인 후 이용이 가능합니다.");
-  //     router.push("/login");
-  //   } else {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인 후 이용이 가능합니다.");
+      router.push("/login");
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   const FetchData = async () => {
-  //     const res = await axios.get("/likes");
-  //     if (res.data.type === "liked") setLike(true);
-  //   };
-  //   FetchData();
-  // }, []);
+  useEffect(() => {
+    const FetchData = async () => {
+      const res = await axios.get("/likes");
+      if (res.data.type === "liked") setLike(true);
+    };
+    FetchData();
+  }, []);
 
-  // if (!isAuthenticated) {
-  //   return null;
-  // }
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const ToggleLike = async () => {
     const res = await axios.post("/likes");
