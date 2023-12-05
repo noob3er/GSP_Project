@@ -16,11 +16,7 @@ const Login = () => {
                 href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
               >
                 <GoogleLogo src="/assets/symbols/google.svg" />
-                <GoogleLogin
-                  href={`${process.env.NEXT_PUBLIC_API_URL}/auth/google`}
-                >
-                  구글 로그인
-                </GoogleLogin>
+                <GoogleLogin>구글 로그인</GoogleLogin>
               </GoogleLoginWrapper>
             </SubmitWrapper>
           </FormWrapper>
@@ -137,4 +133,4 @@ const GoogleLogo = styled.img`
   width: 14px;
 `;
 
-const GoogleLogin = styled(Link)``;
+const GoogleLogin = styled.div``;

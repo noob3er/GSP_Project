@@ -1,6 +1,9 @@
+"use client";
+
 import getProfile from "@/api/getProfile";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -12,14 +15,17 @@ interface User {
 export const Header = () => {
   const [profile, Setprofile] = useState<User>();
 
-  useEffect(() => {
-    if (getCookie("accessToken")) {
-      async () => {
-        const profile = await getProfile();
-        Setprofile(profile);
-      };
-    }
-  });
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   try {
+  //     getProfile().then((res) => Setprofile(res?.data));
+  //   } catch {
+  //     console.log("error");
+  //     router.push("/login");
+  //   }
+  // }, [router]);
+
   return (
     <>
       <Container>
@@ -29,12 +35,10 @@ export const Header = () => {
           </LogoWrapper>
           <HeaderWrapper>
             <NewWrite href="/write">글 쓰기</NewWrite>
-            <Login href={profile ? "/profile" : "/login"}>
-              {profile ? (
-                <ProfileName>{profile?.username}</ProfileName>
-              ) : (
-                <ProfileName>로그인</ProfileName>
-              )}
+            <Login href={profile ? profile?.username : "/login"}>
+              <ProfileName>
+                {profile?.username === undefined ? "로그인" : profile?.username}
+              </ProfileName>
             </Login>
           </HeaderWrapper>
         </SubContainer>
@@ -88,7 +92,14 @@ const NewWrite = styled(Link)`
   align-items: center;
   justify-content: center;
 `;
-const Login = styled(NewWrite)``;
+const Login = styled(Link)`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const ProfileName = styled.h1`
   font-size: 16px;

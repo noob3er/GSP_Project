@@ -1,15 +1,17 @@
+"use client";
+
 import Header from "@/components/Header";
 import List from "@/components/List";
 import Pagination from "@/components/Pagination";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import getList from "@/api/getList";
-import router from "next/router";
 
 const Index = () => {
   interface Post {
     id: string;
     createdAt: string;
+    title: string;
   }
   const [posts, setPosts] = useState<Post[]>([]);
 

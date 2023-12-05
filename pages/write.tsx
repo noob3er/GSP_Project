@@ -1,6 +1,6 @@
-import CheckLogin from "@/api/check";
 import Header from "@/components/Header";
 import axios from "axios";
+import { getCookie } from "cookies-next";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -8,7 +8,6 @@ import styled from "styled-components";
 interface InterfaceType {
   title?: string;
   description?: string;
-  likes?: number;
 }
 
 const Write = () => {
@@ -17,7 +16,6 @@ const Write = () => {
   const [content, setContent] = useState<InterfaceType>({
     title: "",
     description: "",
-    likes: 0,
   });
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,7 +47,7 @@ const Write = () => {
       [name]: value,
     });
   };
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!content.title || !content.description)
       return alert("제목과 내용을 입력해주세요.");
@@ -63,17 +61,16 @@ const Write = () => {
       return;
     }
 
-    axios
+    await axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/board/create`,
         {
           title: content?.title,
           description: content?.description,
-          likes: 0,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            withCredentails: true,
           },
         }
       )

@@ -11,7 +11,7 @@ export default function Pagination() {
   const router = useRouter();
 
   useEffect(() => {
-    setSelected(Number(router.query.page) || 0);
+    setSelected(Number(router?.query.page) || 0);
   }, [router.query.page]);
 
   function handleSelect(page: number) {
